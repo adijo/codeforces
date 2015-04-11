@@ -4,7 +4,6 @@ matrix = []
 for i in range(m):
 	matrix.append(map(int, raw_input().split()))
 
-
 def fill(answer, i, j, m, n):
 	# fill in 0's at ith row and jth column. 
 	# if you come across any ones report failure.
@@ -65,8 +64,6 @@ def process(matrix, m, n):
 			if answer[i][j] == None:
 				answer[i][j] = 0
 	return ("YES", answer)
-
-	
 
 res = process(matrix, m, n)
 if res[0] == "NO":
