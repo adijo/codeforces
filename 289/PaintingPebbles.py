@@ -35,6 +35,3 @@ def process(pebbles, flag):
 			print " ".join(op[i])
 
 process(pebbles, flag)
-
-
-
