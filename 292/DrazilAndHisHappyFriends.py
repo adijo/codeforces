@@ -1,6 +1,5 @@
 n, m = map(int, raw_input().split())
 
-
 boys = [int(x) for x in raw_input().split()]
 b = boys[0]
 boys = set(boys[1:])
@@ -9,6 +8,7 @@ girls = [int(x) for x in raw_input().split()]
 g = girls[0]
 girls = set(girls[1:])
 graph = {}
+
 for i in range(n):
 	graph["b" + str(i)] = {}
 
@@ -21,7 +21,6 @@ for i in range(1000):
 	girl = i % m
 	graph["b" + str(boy)]["g" + str(girl)] = 1
 	graph["g" + str(girl)]["b" + str(boy)] = 1
-
 
 happiness = {}
 
