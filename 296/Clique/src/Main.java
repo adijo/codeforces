@@ -25,7 +25,6 @@ public class Main
     		int w = sc.nextInt();
     		arr[i] = new Interval(x - w, x + w);
     	}
-    	
     	Arrays.sort(arr);
     	int count = 1;
     	Interval first = arr[0];
@@ -37,9 +36,7 @@ public class Main
     			count++;
     			first = curr;
     		}
-    		
     	}
-    	
     	out.println(count);
     	out.close();
     }
