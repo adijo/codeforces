@@ -21,7 +21,7 @@ public class Main
     	out = new PrintWriter(System.out);
     	StringBuilder answer = new StringBuilder();
     	int n = sc.nextInt();
-    	int A = sc.nextInt();
+    	long A = sc.nextLong();
     	long[] d = new long[n];
     	long sum = 0;
     	for(int i = 0; i < n; i++)
