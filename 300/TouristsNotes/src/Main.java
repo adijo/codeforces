@@ -35,7 +35,6 @@ public class Main
     	
     	for(int i = 1; i < m; i++)
     	{
-    		if(!possible) break;
     		Day curr = arr[i];
     		Day prev = arr[i - 1];
     		days_left = curr.d - prev.d;
