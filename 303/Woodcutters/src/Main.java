@@ -13,28 +13,57 @@ public class Main
     private static MyScanner sc;
     private static PrintWriter out;
     private static int[][] dp;
-   
+    private static Tree[] arr;
     public static void main(String[] args)
     {
     	sc = new MyScanner();
     	out = new PrintWriter(System.out);
     	int n = sc.nextInt();
-    	
-    	int[] arr = new int[n + 1];
-    	
-    	for(int i = 1; i <= n; i++) arr[i] = sc.nextInt();
-    	
-    	Arrays.sort(arr);
-    	long[] s = new long[n + 1];
-    	int answer = 0;
-    	for(int i = 1; i <= n; i++)
+    	arr = new Tree[n];
+    	dp = new int[2][n];
+    	for(int i = 0; i < n; i++)
     	{
-    		if(arr[i] >= s[i - 1]) answer += 1;
-    		s[i] = s[i - 1] + arr[i];
+    		arr[i] = new Tree(sc.nextInt(), sc.nextInt());
+    		dp[0][i] = -1;
+    		dp[1][i] = -1;
+    	}
+    	out.println(1 + recurse(0, 1));
+    	
+    	out.close();
+    }
+    
+    private static int recurse(int mode, int i)
+    {
+    	if(i >= arr.length) return 0;
+    	else if(i == arr.length - 1) return 1;
+    	else if(dp[mode][i] != -1) return dp[mode][i];
+    	
+    	else
+    	{
+    		int space = arr[i].x - arr[i - 1].x;
+    		if(mode == 1) space -= arr[i - 1].h;
+    		
+    		if(space > arr[i].h)
+    		{
+    			dp[mode][i] = 1 + recurse(0, i + 1);
+    		}
+    		
+    		else
+    		{
+    			int forward_space = arr[i + 1].x - arr[i].x;
+    			if(forward_space > arr[i].h)
+    			{
+    				dp[mode][i] = max(recurse(0, i + 1), 1 + recurse(1, i + 1));
+    			}
+    			
+    			else
+    			{
+    				dp[mode][i] = recurse(0, i + 1);
+    			}
+    		}
+    		return dp[mode][i];
     		
     	}
-    	out.println(answer + compute_last(arr, s, n));
-    	out.close();
     	
     }
     
@@ -60,21 +89,6 @@ public class Main
 
     }
 
-    private static int compute_last(int[] arr, long[] s, int n)
-    {
-    	int op = 0;
-    	for(int i = 2; i <= n; i++)
-    	{
-    		if(arr[i] >= s[i - 2] && arr[i] < s[i - 1] && arr[i - 1] < s[i - 2])
-    		{
-    			op++;
-    			break;
-    		}
-    		
-    	}
-    	return op;
-    	
-    }
  private static int abs(int a, int b)
     {
         return (int) Math.abs(a - b);
